@@ -1,7 +1,9 @@
+use std::process::Command;
+
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Box, Button, CssProvider, Label, StyleContext};
 use gtk4 as gtk;
-use std::process::Command;
+use gtk4::glib::Propagation;
 mod logic;
 
 fn main() -> glib::ExitCode {
@@ -88,10 +90,23 @@ fn main() -> glib::ExitCode {
         vbox.append(&button2);
         vbox.append(&button3);
         vbox.append(&button4);
-        let label = Label::new(Some("Press SUPER+C to close the program"));
-        vbox.append(&label); // Add label below buttons
-                             // Set the Box as the child of the window
+
+        let label = Label::new(Some("Press ESC to close the program"));
+        vbox.append(&label);
         window.set_child(Some(&vbox));
+
+        let key_controller = gtk::EventControllerKey::new();
+        key_controller.connect_key_pressed(move |_, key, _, _| {
+            if key == gtk::gdk::Key::Escape {
+                println!("Escape key pressed, closing the application");
+                let _ = Command::new("killall").arg("powermenu").output();
+                Propagation::Stop // Stop further propagation
+            } else {
+                println!("Key pressed: {:?}", key);
+                Propagation::Proceed // Continue propagating the event
+            }
+        });
+        window.add_controller(key_controller);
 
         window.present();
     });
