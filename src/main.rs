@@ -53,7 +53,7 @@ fn main() -> glib::ExitCode {
 
         let provider = CssProvider::new();
         provider.load_from_data(css);
-        StyleContext::add_provider_for_display(
+        gtk::style_context_add_provider_for_display(
             &gtk::gdk::Display::default().expect("Could not get display"),
             &provider,
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,

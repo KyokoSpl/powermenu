@@ -6,8 +6,8 @@ pub fn lockscreen() {
     let wm_name = String::from_utf8_lossy(&output.stdout);
     println!("wm_name{}", wm_name);
     if wm_name.contains("Hyprland") {
-        Command::new("hyprlock").output();
-        Command::new("killall").arg("powermenu").output();
+        let _ = Command::new("hyprlock").output();
+        let _ = Command::new("killall").arg("powermenu").output();
     }
 }
 pub fn logout() {
@@ -17,7 +17,7 @@ pub fn logout() {
     println!("wm_name{}", wm_name);
     if wm_name.contains("Hyprland") {
         println!("hyprland");
-        Command::new("hyprctl").arg("dispatch").arg("exit").output();
+        let _ = Command::new("hyprctl").arg("dispatch").arg("exit").output();
     } else {
         println!("not hypr");
     }
