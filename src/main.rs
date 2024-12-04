@@ -1,7 +1,7 @@
 use std::process::Command;
 
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Box, Button, CssProvider, Label, StyleContext};
+use gtk::{glib, Application, ApplicationWindow, Box, Button, CssProvider, Label};
 use gtk4 as gtk;
 use gtk4::glib::Propagation;
 mod logic;
