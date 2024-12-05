@@ -8,6 +8,9 @@ pub fn lockscreen() {
     if wm_name.contains("Hyprland") {
         let _ = Command::new("hyprlock").output();
         let _ = Command::new("killall").arg("powermenu").output();
+    } else if wm_name.contains("LG3D") {
+        let lockscreen = Command::new("betterlockscreen").arg("-l").output();
+        let _ = Command::new("killall").arg("powermenu").output();
     }
 }
 pub fn logout() {
@@ -18,8 +21,14 @@ pub fn logout() {
     if wm_name.contains("Hyprland") {
         println!("hyprland");
         let _ = Command::new("hyprctl").arg("dispatch").arg("exit").output();
-    } else {
-        println!("not hypr");
+    } else if wm_name.contains("LG3D") {
+        Command::new("qtile")
+            .arg("cmd-obj")
+            .arg("-o")
+            .arg("cmd")
+            .arg("-f")
+            .arg("shutdown")
+            .output();
     }
 }
 pub fn reboot() {

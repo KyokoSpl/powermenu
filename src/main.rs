@@ -14,50 +14,52 @@ fn main() -> glib::ExitCode {
     application.connect_activate(|app| {
         let window = ApplicationWindow::builder()
             .application(app)
-            .fullscreened(true) // Open in fullscreen mode
-            .decorated(false) // Remove window decorations
+            .fullscreened(false) // Open in fullscreen mode
+            .decorated(true) // Remove window decorations
+            .default_width(750)
+            .default_height(250)
             .build();
 
         window.set_opacity(0.8); // Adjust transparency level
 
         // CSS styling for buttons and blur effect
-        let css = r#"
-            window {
-                background: rgba(0, 0, 0, 0.6);
-                backdrop-filter: blur(20px); /* Apply blur effect */
-            }
+        // let css = r#"
+        //     window {
+        //         background: rgba(0, 0, 0, 0.6);
+        //         backdrop-filter: blur(20px); /* Apply blur effect */
+        //     }
 
-            button {
-                background-color: #908caa; /* Initial solid button background */
-                color: #000000; /* Text color */
-                border: 2px solid #c4a7e7; /* Border color */
-                border-radius: 8px; /* Rounded corners */
-                width: 100px;
-                height: 100px; /* Make buttons square */
-                margin: 10px; /* Space between buttons */
-                font-size: 14px;
-                transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-            }
+        //     button {
+        //         background-color: #908caa; /* Initial solid button background */
+        //         color: #000000; /* Text color */
+        //         border: 2px solid #c4a7e7; /* Border color */
+        //         border-radius: 8px; /* Rounded corners */
+        //         width: 100px;
+        //         height: 100px; /* Make buttons square */
+        //         margin: 10px; /* Space between buttons */
+        //         font-size: 14px;
+        //         transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+        //     }
 
-            /* Hover effect for buttons */
-            button:hover {
-                background-color: #c4a7e7; /* Change background on hover */
-                transform: scale(1.1); /* Slightly increase size */
-            }
+        //     /* Hover effect for buttons */
+        //     button:hover {
+        //         background-color: #c4a7e7; /* Change background on hover */
+        //         transform: scale(1.1); /* Slightly increase size */
+        //     }
 
-            box {
-                justify-content: center; /* Center buttons horizontally */
-                align-items: center; /* Center buttons vertically */
-            }
-        "#;
+        //     box {
+        //         justify-content: center; /* Center buttons horizontally */
+        //         align-items: center; /* Center buttons vertically */
+        //     }
+        // "#;
 
-        let provider = CssProvider::new();
-        provider.load_from_data(css);
-        gtk::style_context_add_provider_for_display(
-            &gtk::gdk::Display::default().expect("Could not get display"),
-            &provider,
-            gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-        );
+        // let provider = CssProvider::new();
+        // provider.load_from_data(css);
+        // gtk::style_context_add_provider_for_display(
+        //     &gtk::gdk::Display::default().expect("Could not get display"),
+        //     &provider,
+        //     gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+        // );
 
         // Create a vertical Box to center the buttons
         let vbox = Box::new(gtk::Orientation::Vertical, 10);
@@ -84,12 +86,17 @@ fn main() -> glib::ExitCode {
         button4.connect_clicked(|_| {
             logic::logout();
         });
+        let button5 = Button::with_label("Lockscreen");
+        button5.connect_clicked(|_| {
+            logic::lockscreen();
+        });
 
         // Add buttons to the Box
         vbox.append(&button1);
         vbox.append(&button2);
         vbox.append(&button3);
         vbox.append(&button4);
+        vbox.append(&button5);
 
         let label = Label::new(Some("Press ESC to close the program"));
         vbox.append(&label);
