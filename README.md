@@ -1,6 +1,13 @@
 # powermenu
 I wanted to try myself on a powermenu for window managers using rust as a language
 
+## Notable features
+- logout
+- shutdown
+- restart
+- optional: lockscreen
+- seamless integration with your gtk4 theme
+
 ## Currently Supported WMs:
 - Hyprland
 - Qtile(depending on wayland or not u need to adjust the CSS part in main.rs)
