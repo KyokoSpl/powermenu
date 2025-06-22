@@ -1,3 +1,4 @@
+
 use std::process::Command;
 
 pub fn lockscreen() {
@@ -29,6 +30,8 @@ pub fn logout() {
             .arg("-f")
             .arg("shutdown")
             .output();
+    } else if wm_name.contains("dwm") {
+        let _ = Command::new("killall").arg("dwm").output();
     }
 }
 pub fn reboot() {
