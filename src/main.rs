@@ -14,13 +14,13 @@ fn main() -> glib::ExitCode {
     application.connect_activate(|app| {
         let window = ApplicationWindow::builder()
             .application(app)
-            .fullscreened(false) // Open in fullscreen mode
+            .fullscreened(true) // Open in fullscreen mode
             .decorated(true) // Remove window decorations
             .default_width(750)
             .default_height(250)
             .build();
 
-        window.set_opacity(0.8); // Adjust transparency level
+        window.set_opacity(1.0); // Adjust transparency level
 
         CSS styling for buttons and blur effect
         let css = r#"
