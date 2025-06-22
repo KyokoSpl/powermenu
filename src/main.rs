@@ -14,21 +14,21 @@ fn main() -> glib::ExitCode {
     application.connect_activate(|app| {
         let window = ApplicationWindow::builder()
             .application(app)
-            .fullscreened(false) // Open in fullscreen mode
+            .fullscreened(true) // Open in fullscreen mode
             .decorated(true) // Remove window decorations
             .default_width(750)
             .default_height(250)
             .build();
 
-        window.set_opacity(0.8); // Adjust transparency level
+        window.set_opacity(1.0); // Adjust transparency level
 
         // CSS styling for buttons and blur effect
         // let css = r#"
         //     window {
-        //         background: rgba(0, 0, 0, 0.6);
+        //         background: rgba(0, 0, 0, 0.8);
         //         backdrop-filter: blur(20px); /* Apply blur effect */
         //     }
-
+        //
         //     button {
         //         background-color: #908caa; /* Initial solid button background */
         //         color: #000000; /* Text color */
@@ -40,19 +40,19 @@ fn main() -> glib::ExitCode {
         //         font-size: 14px;
         //         transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
         //     }
-
+        //
         //     /* Hover effect for buttons */
         //     button:hover {
         //         background-color: #c4a7e7; /* Change background on hover */
         //         transform: scale(1.1); /* Slightly increase size */
         //     }
-
+        //
         //     box {
         //         justify-content: center; /* Center buttons horizontally */
         //         align-items: center; /* Center buttons vertically */
         //     }
         // "#;
-
+        //
         // let provider = CssProvider::new();
         // provider.load_from_data(css);
         // gtk::style_context_add_provider_for_display(

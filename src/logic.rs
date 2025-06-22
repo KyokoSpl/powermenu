@@ -9,7 +9,10 @@ pub fn lockscreen() {
         let _ = Command::new("hyprlock").output();
         let _ = Command::new("killall").arg("powermenu").output();
     } else if wm_name.contains("LG3D") {
-        let lockscreen = Command::new("betterlockscreen").arg("-l").output();
+        let _lockscreen = Command::new("betterlockscreen").arg("-l").output();
+        let _ = Command::new("killall").arg("powermenu").output();
+    } else if wm_name.contains("dwm") {
+        let _lockscreen = Command::new("betterlockscreen").arg("-l").output();
         let _ = Command::new("killall").arg("powermenu").output();
     }
 }
@@ -22,13 +25,15 @@ pub fn logout() {
         println!("hyprland");
         let _ = Command::new("hyprctl").arg("dispatch").arg("exit").output();
     } else if wm_name.contains("LG3D") {
-        Command::new("qtile")
+        let _ = Command::new("qtile")
             .arg("cmd-obj")
             .arg("-o")
             .arg("cmd")
             .arg("-f")
             .arg("shutdown")
             .output();
+    } else if wm_name.contains("dwm") {
+        let _ = Command::new("pkill").arg("dwm").output();
     }
 }
 pub fn reboot() {
