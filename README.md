@@ -11,6 +11,7 @@ I wanted to try myself on a powermenu for window managers using rust as a langua
 ## Currently Supported WMs:
 - Hyprland
 - Qtile(depending on wayland or not u need to adjust the CSS part in main.rs)
+- DWM if installed as cahdwm (look in logic.rs for exat ussage)
 
 ## Dependencies
 - Rust
