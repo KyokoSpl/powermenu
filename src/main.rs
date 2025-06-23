@@ -22,7 +22,7 @@ fn main() -> glib::ExitCode {
 
         window.set_opacity(1.0); // Adjust transparency level
 
-        CSS styling for buttons and blur effect
+        // CSS styling for buttons and blur effect
         let css = r#"
             window {
                 background: rgba(0, 0, 0, 0.6);
