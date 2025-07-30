@@ -82,5 +82,5 @@ To switch between themes, rename the desired theme file to `main.css`:
    ```
 3. Copy the combiled binary to /usr/bin or whatever bin directory u want (this is optional so you just can type `powermenu` to run the programm otherwise u have to go in the cloned directory and use `cargo run`
    ```bash
-   cp target/debug/powermenu /usr/bin/
+   sudo cp target/debug/powermenu /usr/bin/
    ```
