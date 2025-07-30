@@ -1,4 +1,3 @@
-
 use std::process::Command;
 
 pub fn lockscreen() {
@@ -45,4 +44,8 @@ pub fn shutdown() {
 }
 pub fn suspend() {
     let _ = Command::new("systemctl").arg("suspend").output();
+}
+
+pub fn leckeier() {
+    println!("leck eier");
 }
