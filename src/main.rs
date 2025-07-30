@@ -22,45 +22,14 @@ fn main() -> glib::ExitCode {
 
         window.set_opacity(1.0); // Adjust transparency level
 
-        // CSS styling for buttons and blur effect
-         let css = r#"
-             window {
-                 background: rgba(0, 0, 0, 0.6);
-                 backdrop-filter: blur(20px); /* Apply blur effect */
-             }
-        
-             button {
-                 background-color: #1E1E2E; /* Initial solid button background */
-                 color: #cdd6f4; /* Text color */
-                 border: 2px solid #c4a7e7; /* Border color */
-                 border-radius: 8px; /* Rounded corners */
-                 width: 100px;
-                 height: 100px; /* Make buttons square */
-                 margin: 10px; /* Space between buttons */
-                 font-size: 14px;
-                 transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-             }
-        
-             /* Hover effect for buttons */
-             button:hover {
-                 background-color: #c4a7e7; /* Change background on hover */
-                 color: #1E1E2E; /* Change text color on hover */
-                 transform: scale(1.1); /* Slightly increase size */
-             }
-        
-             box {
-                 justify-content: center; /* Center buttons horizontally */
-                 align-items: center; /* Center buttons vertically */
-             }
-         "#;
-
-         let provider = CssProvider::new();
-         provider.load_from_data(css);
-         gtk::style_context_add_provider_for_display(
-             &gtk::gdk::Display::default().expect("Could not get display"),
-             &provider,
-             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-         );
+        // Load CSS from external file
+        let provider = CssProvider::new();
+        provider.load_from_path("styles/main.css");
+        gtk::style_context_add_provider_for_display(
+            &gtk::gdk::Display::default().expect("Could not get display"),
+            &provider,
+            gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+        );
 
         // Create a vertical Box to center the buttons
         let vbox = Box::new(gtk::Orientation::Vertical, 10);
