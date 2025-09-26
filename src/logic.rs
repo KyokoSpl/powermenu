@@ -46,6 +46,4 @@ pub fn suspend() {
     let _ = Command::new("systemctl").arg("suspend").output();
 }
 
-pub fn leckeier() {
-    println!("leck eier");
-}
+
