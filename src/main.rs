@@ -97,7 +97,7 @@ fn main() -> Result<(), eframe::Error> {
     
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_fullscreen(true)  // Launch in fullscreen
+            .with_fullscreen(false)  // Launch in fullscreen
             .with_decorations(false)
             .with_transparent(false)  // Disable transparency for fullscreen
             .with_always_on_top()
